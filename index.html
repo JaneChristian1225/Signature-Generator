@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style/style2.css">
+    <title>Email Signature</title>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="form-container">
+            <h2>Adon Email Signature Form</h2>
+            <div class="menu">
+                <button onclick="changeForm('default')" id="defaultButton" class="active">Default</button>
+                <button onclick="changeForm('phone')" id="phoneButton">Phone and Mobile</button>
+                <button onclick="changeForm('workforce')" id="workforceButton">Workforce</button>
+            </div>
+            <form class="SignatureForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Name" required oninput="updateText()">
+                
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" placeholder="Position" required oninput="updateText()">
+                
+                <div id="dynamicFields"></div>
+                <button type="button" class="monday_but" onclick="showPreview('html')">For Monday.com</button>
+                <button type="button" class="gmail_but" onclick="showPreview('gmail')">For Gmail.com</button>
+            </form>
+        </div>
+        <div class="container2">
+            <div class="header">
+                <h2>Signature preview</h2>
+                <p>Please do not copy this signature.</p>
+            </div>
+            <div class="email_container" id="content"></div>
+        </div>
+    </div>
+
+    <!-- Modal for preview -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="previewContent"></div>
+            <div id="htmlcode">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeForm(type) {
+            const contentContainer = document.getElementById("content");
+            const dynamicFields = document.getElementById('dynamicFields');
+
+            document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${type}Button`).classList.add('active');
+            dynamicFields.innerHTML = '';
+
+            if (type === 'phone') {
+                dynamicFields.innerHTML = `
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="07 5586 1400" required oninput="updateText()">
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+
+                `;
+                updateText();
+            } else if (type === 'workforce') {
+                dynamicFields.innerHTML = `
+                    <label for="contact">Contact:</label>
+                    <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                `;
+                updateText();
+            } else if (type === 'default') {
+                dynamicFields.innerHTML = `
+                    <label for="contact">Contact:</label>
+                    <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                `;
+                updateText();
+            }
+        }
+
+        function updateText() {
+            const name = document.getElementById("name").value || "Your Name";
+            const position = document.getElementById("position").value || "Your Position";
+            let phone = "";
+            let mobile = "";
+
+            if (document.getElementById("phoneButton").classList.contains("active")) {
+                phone = document.getElementById("phone")?.value || "07 5586 1400";
+                mobile = document.getElementById("mobile")?.value || "";
+            } else {
+                phone = document.getElementById("contact")?.value || "07 5586 1400";
+                mobile = document.getElementById("mobile")?.value || "";
+            }
+
+            if (document.getElementById("defaultButton").classList.contains("active")) {
+                document.getElementById("content").innerHTML = generateSignature(name, position, phone, mobile);
+            } else if (document.getElementById("phoneButton").classList.contains("active")) {
+                document.getElementById("content").innerHTML = generateSignature(name, position, phone, mobile);
+            } else if (document.getElementById("workforceButton").classList.contains("active")) {
+                document.getElementById("content").innerHTML = generateAOWSignature(name, position, phone, mobile);
+            }
+        }
+
+        function generateAOWSignature(name, position, phone, mobile) {
+            return `
+                <table class="sig-cont" style="background-color: #000; color: #fff; border-radius: 15px; padding: 5px; width: 600px">
+                    <tr style="">
+                        <td>
+                            <table class="sig-aog-details-cont">
+                                <tr>
+                                    <td class="aog-logo" style="text-align: center; padding: 10px 25px 10px 0px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" height="100%">
+                                            <tr>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <img src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png" 
+                                                        width="300" 
+                                                        style="display: block; margin: 0 auto; object-fit: contain;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <h3>A division of Ad On Group</h3>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td>
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-size: 16px; color: #fff;">
+                                            <!-- Name & Position -->
+                                            <tr>
+                                                <td>
+                                                    <div style="line-height: 1;"> 
+                                                        <strong>${name}</strong><br>
+                                                        <strong style="font-size: 11px; padding-bottom: 5px;">${position}</strong>
+                                                    </div>
+                                                    
+                                                </td>
+                                            </tr>
+
+                                            <!-- Contact Links -->
+                                            <tr>
+                                                <td>
+                                                    <div class="links-cont" style="line-height: 1; padding-top: 15px">
+                                                        <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            ${phone}
+                                                        </a><br>
+                                                        ${mobile ? `
+                                                            <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                                                <img src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                                            </a><br>` : ''}
+                                                        <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            www.adongroup.com.au
+                                                        </a><br>
+                                                        <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            www.adonworkforce.com.au
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <p style="font-size: 8px; padding-top: 0px">
+                                This email, its contents and any attachments are strictly confidential. 
+                                They must not be used, distributed, copied or read by any person other than the addressee. 
+                                Unauthorised use, disclosure, copying or reliance on the contents of and attachments to this 
+                                email by anyone other than the addressee may be unlawful. 
+                                If you have received this email and attachments in error, please contact us at Ad on Group immediately to facilitate its return.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function generateSignature(name, position, phone, mobile) {
+            return `
+                <table class="sig-cont" style="background-color: #000; color: #fff; border-radius: 15px; padding: 15px; width: 670px">
+                    <tr style="display: flex; flex-direction: row; margin: 0; padding: 0; width: 100%;">
+                        <td style="width: 35%;">
+                            <table class="sig-aog-details-cont">
+                                <td class="aog-logo" style="width: 250px; margin: 0;">
+                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png" style="width: 97%;">
+                                </td>
+                            </table>
+                        </td>
+                        <td style="width: 35%;">
+                            <div class="name-position-cont" style="font-size: 16px; line-height: 1">
+                                <strong>${name}</strong><br>
+                                <strong style="font-size: 11px; margin-top: 10px; margin-bottom: 0;">${position}</strong><br><br>
+                            </div>
+                            <div class="links-cont" style="line-height: 1">
+                                <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    ${phone}
+                                </a><br>
+                                ${mobile ? `
+                                <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                </a><br>` : ''}
+                                <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    www.adongroup.com.au
+                                </a><br>
+                                <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
+                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    www.adonworkforce.com.au
+                                </a>
+                            </div>
+                            
+                        </td>
+                        <td class="other-logo" style="width: 40%; padding-left: 0px;">
+                            <table style="width: 100%; text-align: center;">
+                                <tr>
+                                    <td>
+                                        <img src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png" style="width: 180px; height: 23px; margin-bottom: 5px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png" style="width: 145px; height: 39px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo-1.png" style="width: 120px; height: 35px; margin-top: -3px">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="width: 100%;">
+                            <p style="font-size: 8px; padding-left: 5px; line-height: 1.5; margin-bottom: 0; margin-top:0;">
+                                This email, its contents and any attachments are strictly confidential. 
+                                They must not be used, distributed, copied or read by any person other than the addressee. 
+                                Unauthorised use, disclosure, copying or reliance on the contents of and attachments to this 
+                                email by anyone other than the addressee may be unlawful. 
+                                If you have received this email and attachments in error, please contact us at Ad on Group immediately to facilitate its return.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function showPreview(type) {
+            const previewModal = document.getElementById("previewModal");
+            const previewContent = document.getElementById("previewContent");
+            const previewHTML = document.getElementById("htmlcode");
+            const name = document.getElementById("name").value || "Your Name";
+            const position = document.getElementById("position").value || "Your Position";
+            let phone = "";
+            let mobile = "";
+
+            if (document.getElementById("phoneButton").classList.contains("active")) {
+                phone = document.getElementById("phone")?.value || "07 5586 1400";
+                mobile = document.getElementById("mobile")?.value || "";
+            } else {
+                phone = document.getElementById("contact")?.value || "07 5586 1400";
+                mobile = document.getElementById("mobile")?.value || "";
+            }
+
+            let signatureHTML;
+            if (type === 'html') {
+                if (document.getElementById("workforceButton").classList.contains("active")) {
+                    signatureHTML = generateAOWSignature(name, position, phone,mobile);
+                } else {
+                    signatureHTML = generateSignature(name, position, phone, mobile);
+                }
+                signatureHTML = minifyHtml(signatureHTML);
+
+                // Convert HTML into raw HTML code
+            previewHTML.innerHTML = `<textarea rows="10" cols="100">${escapeHtml(signatureHTML)}</textarea>`;
+
+            } else {
+                if (document.getElementById("workforceButton").classList.contains("active")) {
+                    document.getElementById("previewContent").innerHTML = generateAOWSignature(name, position, phone,mobile);
+                } else {
+                    document.getElementById("previewContent").innerHTML = generateSignature(name, position, phone,mobile);
+                }
+            }
+
+            previewModal.style.display = "block";
+        }
+    function minifyHtml(html) {
+        return html.replace(/\s+/g, ' ').replace(/\n/g, '').trim();
+    }
+
+    function escapeHtml(str) {
+    // Escape the basic HTML characters
+        return str.replace(/\s+/g, ' ').trim();
+    }
+    function closeModal() {
+        document.getElementById("previewModal").style.display = "none";
+        document.getElementById("previewContent").innerHTML = "";
+        document.getElementById("htmlcode").innerHTML = "";
+
+        }
+    window.onload = function() {
+            changeForm('default');
+        }
+    </script>
+
+</body>
+</html>
