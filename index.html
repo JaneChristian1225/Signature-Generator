@@ -1,50 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style2.css">
-    <title>Email Signature</title>
+    <title>Signature Studio · Ad On Group</title>
 </head>
 <body>
-    <div class="container-wrapper">
-        <div class="form-container">
-            <h2>Adon Email Signature Form</h2>
-            <div class="menu">
-                <button onclick="changeForm('default')" id="defaultButton" class="active">Default</button>
-                <button onclick="changeForm('phone')" id="phoneButton">Phone and Mobile</button>
-                <button onclick="changeForm('workforce')" id="workforceButton">Workforce</button>
-                <button onclick="changeForm('adonai')" id="adonaiButton">AD ON AI</button>
+
+    <header class="topbar">
+        <div class="topbar-mark">
+            <span class="mark-dot"></span>
+            <span class="mark-text">Signature Studio</span>
+        </div>
+        <p class="topbar-sub">Build your Ad On Group email sign-off in a minute.</p>
+    </header>
+
+    <main class="workspace">
+
+        <!-- BUILD PANEL -->
+        <section class="panel panel-build" aria-labelledby="build-heading">
+            <div class="panel-head">
+                <span class="panel-eyebrow">Step 01</span>
+                <h2 id="build-heading">Choose a style</h2>
             </div>
-            <form class="SignatureForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Name" required oninput="updateText()">
-                
-                <label for="position">Position:</label>
-                <input type="text" id="position" name="position" placeholder="Position" required oninput="updateText()">
-                
-                <div id="dynamicFields"></div>
-                <button type="button" class="monday_but" onclick="showPreview('html')">For Monday.com</button>
-                <button type="button" class="gmail_but" onclick="showPreview('gmail')">For Gmail.com</button>
+
+            <div class="style-picker" role="tablist" aria-label="Signature style">
+                <button role="tab" onclick="changeForm('default')" id="defaultButton" class="style-chip active">
+                    <span class="chip-swatch chip-swatch--default"></span>Default
+                </button>
+                <button role="tab" onclick="changeForm('phone')" id="phoneButton" class="style-chip">
+                    <span class="chip-swatch chip-swatch--phone"></span>Phone &amp; Mobile
+                </button>
+                <button role="tab" onclick="changeForm('workforce')" id="workforceButton" class="style-chip">
+                    <span class="chip-swatch chip-swatch--workforce"></span>Workforce
+                </button>
+                <button role="tab" onclick="changeForm('adonai')" id="adonaiButton" class="style-chip">
+                    <span class="chip-swatch chip-swatch--adonai"></span>AD ON AI
+                </button>
+            </div>
+
+            <div class="panel-head panel-head--tight">
+                <span class="panel-eyebrow">Step 02</span>
+                <h2>Your details</h2>
+            </div>
+
+            <form class="SignatureForm" onsubmit="return false;">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="e.g. Charlotte Reyes" required oninput="updateText()">
+                </div>
+
+                <div class="field">
+                    <label for="position">Position</label>
+                    <input type="text" id="position" name="position" placeholder="e.g. Admin and Project Manager Assistant" required oninput="updateText()">
+                </div>
+
+                <div id="dynamicFields" class="dynamic-fields"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="gmail_but" onclick="showPreview('gmail')">
+                        Get signature for Gmail
+                    </button>
+                </div>
             </form>
-        </div>
-        <div class="container2">
-            <div class="header">
-                <h2>Signature preview</h2>
-                <p>Please do not copy this signature.</p>
+        </section>
+
+        <!-- PREVIEW PANEL -->
+        <section class="panel panel-preview" aria-labelledby="preview-heading">
+            <div class="panel-head">
+                <span class="panel-eyebrow">Live preview</span>
+                <h2 id="preview-heading">Signature preview</h2>
             </div>
-            <div class="email_container" id="content"></div>
-        </div>
-    </div>
+            <p class="preview-note">This is a preview only — please don't copy directly from here.</p>
+
+            <div class="mock-email">
+                <div class="mock-email-chrome">
+                    <span class="mock-dot"></span>
+                    <span class="mock-dot"></span>
+                    <span class="mock-dot"></span>
+                    <span class="mock-email-title">New message</span>
+                </div>
+                <div class="mock-email-meta">
+                    <span class="mock-email-label">To</span>
+                    <span class="mock-email-value">client@example.com</span>
+                </div>
+                <div class="mock-email-meta">
+                    <span class="mock-email-label">Subject</span>
+                    <span class="mock-email-value">Following up</span>
+                </div>
+                <div class="mock-email-body">
+                    <p class="mock-email-lorem">Thanks for your time today — looking forward to next steps.</p>
+                    <div class="email_container" id="content"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Modal for preview -->
     <div id="previewModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div id="previewContent"></div>
-            <div id="htmlcode">
-                
-            </div>
+            <div id="htmlcode"></div>
         </div>
     </div>
 
@@ -53,42 +115,52 @@
             const contentContainer = document.getElementById("content");
             const dynamicFields = document.getElementById('dynamicFields');
 
-            document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.style-chip').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`${type}Button`).classList.add('active');
             dynamicFields.innerHTML = '';
 
             if (type === 'phone') {
                 dynamicFields.innerHTML = `
-                    <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" placeholder="07 5586 1400" required oninput="updateText()">
-                    <label for="mobile">Mobile:</label>
-                    <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
-
+                    <div class="field">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" placeholder="07 5586 1400" required oninput="updateText()">
+                    </div>
+                    <div class="field">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                    </div>
                 `;
                 updateText();
             } else if (type === 'workforce') {
                 dynamicFields.innerHTML = `
-                    <label for="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
-                    <label for="mobile">Mobile:</label>
-                    <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                    <div class="field">
+                        <label for="contact">Contact</label>
+                        <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                    </div>
+                    <div class="field">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                    </div>
                 `;
                 updateText();
-            } 
-            else if (type === 'adonai') {
+            } else if (type === 'adonai') {
                 dynamicFields.innerHTML = `
-                    <label for="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
-                    <label for="mobile">Mobile:</label>
-                    <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                    <div class="field">
+                        <label for="contact">Contact</label>
+                        <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                    </div>
+                    <div class="field">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" id="mobile" name="mobile" placeholder="0412 345 678" oninput="updateText()">
+                    </div>
                 `;
                 updateText();
-            }
-            
-            else if (type === 'default') {
+            } else if (type === 'default') {
                 dynamicFields.innerHTML = `
-                    <label for="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                    <div class="field">
+                        <label for="contact">Contact</label>
+                        <input type="text" id="contact" name="contact" placeholder="07 5586 1400" required oninput="updateText()">
+                    </div>
                 `;
                 updateText();
             }
@@ -114,8 +186,7 @@
                 document.getElementById("content").innerHTML = generateSignature(name, position, phone, mobile);
             } else if (document.getElementById("workforceButton").classList.contains("active")) {
                 document.getElementById("content").innerHTML = generateAOWSignature(name, position, phone, mobile);
-            }
-            else if (document.getElementById("adonaiButton").classList.contains("active")) {
+            } else if (document.getElementById("adonaiButton").classList.contains("active")) {
                 document.getElementById("content").innerHTML = generateadonaiSignature(name, position, phone, mobile);
             }
         }
@@ -131,7 +202,7 @@
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" height="100%">
                                             <tr>
                                                 <td style="text-align: center; vertical-align: middle;">
-                                                    <img src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png" 
+                                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Ad-on-Workforce-logo.png?raw=true" 
                                                         width="300" 
                                                         style="display: block; margin: 0 auto; object-fit: contain;">
                                                 </td>
@@ -162,19 +233,19 @@
                                                 <td>
                                                     <div class="links-cont" style="line-height: 1; padding-top: 15px">
                                                         <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                                             ${phone}
                                                         </a><br>
                                                         ${mobile ? `
                                                             <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                                <img src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
                                                             </a><br>` : ''}
                                                         <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                                             www.adongroup.com.au
                                                         </a><br>
                                                         <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                                             www.adonworkforce.com.au
                                                         </a>
                                                     </div>
@@ -212,10 +283,10 @@
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" height="100%">
                                             <tr>
                                                 <td style=" vertical-align: middle;">
-                                                    <img src="Assets/Group-753-1-1.jpg" 
+                                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Group-753-1-1.jpg?raw=true" 
                                                         width="200" 
                                                         style="display: block; object-fit: contain; margin-left:-8px">
-                                                        <img src="Assets/Group-756-1-scaled.png"
+                                                        <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Group-756-1-scaled.png?raw=true"
                                             width="200"
                                             style="display:block;">
                                                 </td>
@@ -241,15 +312,15 @@
                                                 <td>
                                                     <div class="links-cont" style="line-height: 1; padding-top: 15px">
                                                         <a href="tel:07 5586 1400" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                            <img src="Assets/Mask-group-70.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-70.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                                             ${phone}
                                                         </a><br>
                                                         ${mobile ? `
                                                             <a href="tel:${mobile}" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                                <img src="Assets/smartphone.png" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
                                                             </a><br>` : ''}
                                                         <a href="https://adongroup.com.au/" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                            <img src="Assets/Mask-group-69.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-69.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                                             www.adongroup.com.au
                                                         </a><br>
                                                         
@@ -291,7 +362,7 @@
                         <td style="width: 50%;">
                             <table class="sig-aog-details-cont">
                                 <td class="aog-logo" style="width: 215px; margin: 0;">
-                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png" style="width: 80%;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AdonGroup.png?raw=true" style="width: 80%;">
                                 </td>
                             </table>
                         </td>
@@ -302,19 +373,19 @@
                             </div>
                             <div class="links-cont" style="line-height: 1">
                                 <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                     ${phone}
                                 </a><br>
                                 ${mobile ? `
                                 <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
                                 </a><br>` : ''}
                                 <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                     www.adongroup.com.au
                                 </a><br>
                                 <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
                                     www.adonworkforce.com.au
                                 </a>
                             </div>
@@ -324,13 +395,13 @@
                     
                     <tr class="other-logo" style=" padding-left: 0px;">
                         <td>
-                            <img src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png" style="width: 195px; height: 26px; margin-bottom: 18px; margin-left:5px">
+                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Ad-on-Workforce-logo.png?raw=true" style="width: 195px; height: 26px; margin-bottom: 18px; margin-left:5px">
                         </td>
                         <td>
-                            <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png" style="width: 155px; height: 39px; margin-top: 5px">
+                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOD-logo.png?raw=true" style="width: 155px; height: 39px; margin-top: 5px">
                         </td>
                         <td>
-                                <img src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo-1.png" style="width: 135px; height: 40px; margin-top: -3px; margin-right: 20px">
+                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOH-logo-1.png?raw=true" style="width: 135px; height: 40px; margin-top: -3px; margin-right: 20px">
                         </td>
                     </tr>
                     <tr>
