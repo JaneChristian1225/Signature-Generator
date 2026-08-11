@@ -193,36 +193,36 @@
 
         function generateAOWSignature(name, position, phone, mobile) {
             return `
-                <table class="sig-cont" style="background-color: #000; color: #fff; border-radius: 15px; padding: 5px; width: 600px">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" bgcolor="#000000" style="background-color: #000000 !important; color: #ffffff !important; border-radius: 15px; padding: 5px; width: 600px">
                     <tr style="">
-                        <td>
-                            <table class="sig-aog-details-cont">
+                        <td bgcolor="#000000" style="background-color: #000000 !important;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" class="sig-aog-details-cont">
                                 <tr>
-                                    <td class="aog-logo" style="text-align: center; padding: 10px 25px 10px 0px;">
+                                    <td class="aog-logo" bgcolor="#000000" style="background-color: #000000 !important; text-align: center; padding: 10px 25px 10px 0px;">
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" height="100%">
                                             <tr>
-                                                <td style="text-align: center; vertical-align: middle;">
+                                                <td bgcolor="#000000" style="background-color: #000000 !important; text-align: center; vertical-align: middle;">
                                                     <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Ad-on-Workforce-logo.png?raw=true" 
-                                                        width="300" 
-                                                        style="display: block; margin: 0 auto; object-fit: contain;">
+                                                        width="300" alt="Ad On Workforce"
+                                                        style="display: block; margin: 0 auto; object-fit: contain; border:0;">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="text-align: center;">
-                                                    <h3>A division of Ad On Group</h3>
+                                                <td bgcolor="#000000" style="background-color: #000000 !important; text-align: center;">
+                                                    <h3 style="color: #ffffff !important;">A division of Ad On Group</h3>
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
 
-                                    <td style="vertical-align: middle;">
-                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-size: 16px; color: #fff;">
+                                    <td bgcolor="#000000" style="background-color: #000000 !important; vertical-align: middle;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-size: 16px; color: #ffffff !important;">
                                             <!-- Name & Position -->
                                             <tr>
-                                                <td>
+                                                <td bgcolor="#000000" style="background-color: #000000 !important;">
                                                     <div style="line-height: 1;"> 
-                                                        <strong>${name}</strong><br>
-                                                        <strong style="font-size: 11px; padding-bottom: 5px;">${position}</strong>
+                                                        <strong style="color: #ffffff !important;">${name}</strong><br>
+                                                        <strong style="font-size: 11px; padding-bottom: 5px; color: #ffffff !important;">${position}</strong>
                                                     </div>
                                                     
                                                 </td>
@@ -230,22 +230,22 @@
 
                                             <!-- Contact Links -->
                                             <tr>
-                                                <td>
+                                                <td bgcolor="#000000" style="background-color: #000000 !important;">
                                                     <div class="links-cont" style="line-height: 1; padding-top: 15px">
-                                                        <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                        <a href="tel:0755861400" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                                             ${phone}
                                                         </a><br>
                                                         ${mobile ? `
-                                                            <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                                            <a href="tel:${mobile}" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; border:0;">${mobile}
                                                             </a><br>` : ''}
-                                                        <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                        <a href="https://adongroup.com.au/" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                                             www.adongroup.com.au
                                                         </a><br>
-                                                        <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                        <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                                             www.adonworkforce.com.au
                                                         </a>
                                                     </div>
@@ -259,8 +259,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <p style="font-size: 8px; padding-top: 5px">
+                        <td colspan="3" bgcolor="#000000" style="background-color: #000000 !important;">
+                            <p style="font-size: 8px; padding-top: 5px; color: #ffffff !important;">
                                 This email, its contents and any attachments are strictly confidential. 
                                 They must not be used, distributed, copied or read by any person other than the addressee. 
                                 Unauthorised use, disclosure, copying or reliance on the contents of and attachments to this 
@@ -274,34 +274,34 @@
         }
         function generateadonaiSignature(name, position, phone, mobile) {
             return `
-                <table class="sig-cont" style="background-image: linear-gradient(90deg, rgb(255, 255, 255) 25%, #D6EEF9 100%); color: #000; border-radius: 15px; padding: 5px; width: 680px; border: 1px solid #000; padding-left: 10px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" bgcolor="#EAF6FC" style="background-image: linear-gradient(90deg, #ffffff 25%, #D6EEF9 100%); background-color: #EAF6FC !important; color: #000000 !important; border-radius: 15px; padding: 5px; width: 680px; border: 1px solid #000; padding-left: 10px;">
                     <tr style="">
-                        <td>
-                            <table class="sig-aog-details-cont">
+                        <td bgcolor="#EAF6FC" style="background-color: #EAF6FC !important;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" class="sig-aog-details-cont">
                                 <tr>
-                                    <td class="aog-logo" style="text-align: center; padding: 10px 25px 10px 0px; border-right: 1px solid #000; width: 250px">
+                                    <td class="aog-logo" bgcolor="#ffffff" style="background-color: #ffffff !important; text-align: center; padding: 10px 25px 10px 0px; border-right: 1px solid #000; width: 250px">
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" height="100%">
                                             <tr>
-                                                <td style=" vertical-align: middle;">
+                                                <td bgcolor="#ffffff" style="background-color: #ffffff !important; vertical-align: middle;">
                                                     <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Group-753-1-1.jpg?raw=true" 
-                                                        width="200" 
-                                                        style="display: block; object-fit: contain; margin-left:-8px">
+                                                        width="200" alt="Ad On AI"
+                                                        style="display: block; object-fit: contain; margin-left:-8px; border:0;">
                                                         <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Group-756-1-scaled.png?raw=true"
-                                            width="200"
-                                            style="display:block;">
+                                                            width="200" alt=""
+                                                            style="display:block; border:0;">
                                                 </td>
                                             </tr>
                                         
                                         </table>
                                     </td>
-                                    <td style="vertical-align: middle; padding-left: 25px; padding-top:10px">
-                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-size: 16px; color: #000;">
+                                    <td bgcolor="#EAF6FC" style="background-color: #EAF6FC !important; vertical-align: middle; padding-left: 25px; padding-top:10px">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-size: 16px; color: #000000 !important;">
                                             <!-- Name & Position -->
                                             <tr>
-                                                <td>
+                                                <td bgcolor="#EAF6FC" style="background-color: #EAF6FC !important;">
                                                     <div style="line-height: 1;"> 
-                                                        <strong>${name}</strong><br>
-                                                        <strong style="font-size: 11px; padding-bottom: 5px;">${position}</strong>
+                                                        <strong style="color: #000000 !important;">${name}</strong><br>
+                                                        <strong style="font-size: 11px; padding-bottom: 5px; color: #000000 !important;">${position}</strong>
                                                     </div>
                                                     
                                                 </td>
@@ -309,18 +309,18 @@
 
                                             <!-- Contact Links -->
                                             <tr>
-                                                <td>
+                                                <td bgcolor="#EAF6FC" style="background-color: #EAF6FC !important;">
                                                     <div class="links-cont" style="line-height: 1; padding-top: 15px">
-                                                        <a href="tel:07 5586 1400" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-70.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                        <a href="tel:0755861400" style="font-size: 11px; color: #000000 !important; text-decoration: none;">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-70.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                                             ${phone}
                                                         </a><br>
                                                         ${mobile ? `
-                                                            <a href="tel:${mobile}" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                                            <a href="tel:${mobile}" style="font-size: 11px; color: #000000 !important; text-decoration: none;">
+                                                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; border:0;">${mobile}
                                                             </a><br>` : ''}
-                                                        <a href="https://adongroup.com.au/" style="font-size: 11px; color: #000; text-decoration: none;">
-                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-69.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                                        <a href="https://adongroup.com.au/" style="font-size: 11px; color: #000000 !important; text-decoration: none;">
+                                                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Mask-group-69.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                                             www.adongroup.com.au
                                                         </a><br>
                                                         
@@ -334,15 +334,15 @@
                                 </tr>
                             
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="2" bgcolor="#EAF6FC" style="background-color: #EAF6FC !important;">
 
                                         
 
-                                        <h3 style="font-size:16px; margin:10px 0 5px;">
+                                        <h3 style="font-size:16px; margin:10px 0 5px; color: #000000 !important;">
                                             Divisions · Ad On AI · Ad On Workforce · Ad On Digital · Ad On Hold
                                         </h3>
 
-                                        <p style="font-size:8px; text-align:left;">
+                                        <p style="font-size:8px; text-align:left; color: #000000 !important;">
                                             This email, its contents and any attachments are strictly confidential. They must not be used, distributed, copied or read by any person other than the addressee. Unauthorised use, disclosure, copying or reliance on the contents of and attachments to this email by anyone other than the addressee may be unlawful. If you have received this email and attachments in error, please contact us at Ad on Group immediately to facilitate its return.
                                         </p>
 
@@ -357,35 +357,35 @@
         }
         function generateSignature(name, position, phone, mobile) {
             return `
-                <table class="sig-cont" style="background-color: #000; color: #fff; border-radius: 15px; padding: 15px; width: 650px">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" bgcolor="#000000" style="background-color: #000000 !important; color: #ffffff !important; border-radius: 15px; padding: 15px; width: 650px">
                     <tr style="margin: 0; padding: 0; width: 100%;">
-                        <td style="width: 50%;">
-                            <table class="sig-aog-details-cont">
-                                <td class="aog-logo" style="width: 215px; margin: 0;">
-                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AdonGroup.png?raw=true" style="width: 80%;">
+                        <td bgcolor="#000000" style="background-color: #000000 !important; width: 50%;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" class="sig-aog-details-cont">
+                                <td class="aog-logo" bgcolor="#000000" style="background-color: #000000 !important; width: 215px; margin: 0;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AdonGroup.png?raw=true" alt="Ad On Group" style="width: 80%; border:0;">
                                 </td>
                             </table>
                         </td>
-                        <td style="width: 45%;">
+                        <td bgcolor="#000000" style="background-color: #000000 !important; width: 45%;">
                             <div class="name-position-cont" style="font-size: 16px; line-height: 1">
-                                <strong>${name}</strong><br>
-                                <strong style="font-size: 11px; margin-top: 10px; margin-bottom: 0;">${position}</strong><br><br>
+                                <strong style="color: #ffffff !important;">${name}</strong><br>
+                                <strong style="font-size: 11px; margin-top: 10px; margin-bottom: 0; color: #ffffff !important;">${position}</strong><br><br>
                             </div>
                             <div class="links-cont" style="line-height: 1">
-                                <a href="tel:07 5586 1400" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                <a href="tel:0755861400" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/phone-call.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                     ${phone}
                                 </a><br>
                                 ${mobile ? `
-                                <a href="tel:${mobile}" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" style="width: 12px; height:12px; margin-right: 10px;">${mobile}
+                                <a href="tel:${mobile}" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/smartphone.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; border:0;">${mobile}
                                 </a><br>` : ''}
-                                <a href="https://adongroup.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                <a href="https://adongroup.com.au/" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                     www.adongroup.com.au
                                 </a><br>
-                                <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #fff; text-decoration: none;">
-                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain">
+                                <a href="https://adonworkforce.com.au/" style="font-size: 11px; color: #ffffff !important; text-decoration: none;">
+                                    <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/globe.png?raw=true" width="12" height="12" alt="" style="width: 12px; height:12px; margin-right: 10px; object-fit: contain; border:0;">
                                     www.adonworkforce.com.au
                                 </a>
                             </div>
@@ -394,19 +394,19 @@
                     </tr>
                     
                     <tr class="other-logo" style=" padding-left: 0px;">
-                        <td>
-                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Ad-on-Workforce-logo.png?raw=true" style="width: 195px; height: 26px; margin-bottom: 18px; margin-left:5px">
+                        <td bgcolor="#000000" style="background-color: #000000 !important;">
+                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/Ad-on-Workforce-logo.png?raw=true" alt="Ad On Workforce" style="width: 195px; height: 26px; margin-bottom: 18px; margin-left:5px; border:0;">
                         </td>
-                        <td>
-                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOD-logo.png?raw=true" style="width: 155px; height: 39px; margin-top: 5px">
+                        <td bgcolor="#000000" style="background-color: #000000 !important;">
+                            <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOD-logo.png?raw=true" alt="Ad On Digital" style="width: 155px; height: 39px; margin-top: 5px; border:0;">
                         </td>
-                        <td>
-                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOH-logo-1.png?raw=true" style="width: 135px; height: 40px; margin-top: -3px; margin-right: 20px">
+                        <td bgcolor="#000000" style="background-color: #000000 !important;">
+                                <img src="https://github.com/JaneChristian1225/Signature-Generator/blob/main/Assets/AOH-logo-1.png?raw=true" alt="Ad On Hold" style="width: 135px; height: 40px; margin-top: -3px; margin-right: 20px; border:0;">
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="width: 100%;">
-                            <p style="font-size: 8px; padding-left: 5px; line-height: 1.5; margin-bottom: 0; margin-top:0;">
+                        <td colspan="3" bgcolor="#000000" style="background-color: #000000 !important; width: 100%;">
+                            <p style="font-size: 8px; padding-left: 5px; line-height: 1.5; margin-bottom: 0; margin-top:0; color: #ffffff !important;">
                                 This email, its contents and any attachments are strictly confidential. 
                                 They must not be used, distributed, copied or read by any person other than the addressee. 
                                 Unauthorised use, disclosure, copying or reliance on the contents of and attachments to this 
